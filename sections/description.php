@@ -42,17 +42,17 @@ $mechanic = isset($config['mechanics'][$id]) ? $config['mechanics'][$id] : null;
             <div class="name">Атрибуты</div>
             <div class="args">
                 <div class="arg">
-                    <div class="icon" style="background-image: url('/img/icons/item1.png')"></div>
+                    <div class="icon" style="background-image: url('/img/icons/item1.webp')"></div>
                     <div class="attribute-value"> <?= $hero['attributes'][1]['value'] ?></div>
                     <div class="attribute-increment">+<?= $hero['attributes'][1]['increment'] ?></div>
                 </div>
                 <div class="arg">
-                    <div class="icon" style="background-image: url('/img/icons/item2.png')"></div>
+                    <div class="icon" style="background-image: url('/img/icons/item2.webp')"></div>
                     <div class="attribute-value"> <?= $hero['attributes'][2]['value'] ?></div>
                     <div class="attribute-increment">+<?= $hero['attributes'][2]['increment'] ?></div>
                 </div>
                 <div class="arg">
-                    <div class="icon" style="background-image: url('/img/icons/item3.png')"></div>
+                    <div class="icon" style="background-image: url('/img/icons/item3.webp')"></div>
                     <div class="attribute-value"> <?= $hero['attributes'][3]['value'] ?></div>
                     <div class="attribute-increment">+<?= $hero['attributes'][3]['increment'] ?></div>
                 </div>

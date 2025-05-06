@@ -10,13 +10,18 @@
                     <div class="ability-name"><?=$ability['name']?></div>
                 </div>
                 <h3>Описание</h3>
-                <div class="ability-text"><?=$ability['description']?></div>
-                <h3>Характеристики</h3>
-                <div class="stats-block">
-                    <?php foreach($ability['stats'] as $stat): ?>
-                        <div class="ability-stats"><?= $stat ?></div>
-                    <?php endforeach; ?>
-                </div>
+                <?php if($ability['description']): ?>
+                    <div class="ability-text"><?=$ability['description']?></div>
+                <?php endif; ?>
+                <?php if(sizeof($ability) > 4 && $ability['stats']): ?>
+                    <h3>Характеристики</h3>
+                        <div class="stats-block">
+                            <?php foreach($ability['stats'] as $stat): ?>
+                                <div class="ability-stats"><?= $stat ?></div>
+                            <?php endforeach; ?>
+                        </div>
+                <?php endif; ?>
+                <?php if($ability['notes'] != []): ?>
                 <h3>Особенности</h3>
                 <div class="ability-notes">
                     <ul>
@@ -27,6 +32,7 @@
                         <?php endforeach; ?>
                     <ul>
                 </div>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>
