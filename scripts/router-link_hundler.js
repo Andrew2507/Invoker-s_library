@@ -31,9 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        if (currentPage === "stats") {
+        if (currentPage === "facets") {
             links.forEach(l => {
                 if (l.id === "router4") {
+                    l.classList.add("active");
+                } else {
+                    l.classList.remove("active")
+                }
+            });
+        }
+        if (currentPage === "stats") {
+            links.forEach(l => {
+                if (l.id === "router5") {
                     l.classList.add("active");
                 } else {
                     l.classList.remove("active")

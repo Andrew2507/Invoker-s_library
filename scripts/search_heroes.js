@@ -4,7 +4,7 @@ function refresh_heroes(heroes, query, complexity){
             const searchText = hero.getAttribute("data-search").toLowerCase();
             const att = hero.getAttribute("att").toLowerCase();
             const comp = hero.getAttribute("comp").toLowerCase();
-            if (searchText.includes(query) && (attributes_choosed.includes(att) || attributes_choosed.length === 0) && complexity.includes(comp)) {
+            if ((searchWordInText(query, searchText) && (attributes_choosed.includes(att) || attributes_choosed.length === 0) && complexity.includes(comp))) {
                 hero.style.display = "block";
                 hasVisibleHero = true;
             } else {
@@ -17,6 +17,17 @@ function refresh_heroes(heroes, query, complexity){
             globalMessage.style.display = "block";
             console.log("noHero")
         }
+}
+
+function normalizeWord(word) {
+    return word.replace(/[^a-zA-Zа-яА-ЯёЁ]/g, '').toLowerCase();
+}
+
+function searchWordInText(word, text) {
+    const normalizedWord = normalizeWord(word);
+    const normalizedText = normalizeWord(text);
+
+    return normalizedText.includes(normalizedWord);
 }
 
 let attributes_choosed = [];
@@ -60,28 +71,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if(last_complexity !== complexity || selected === false) {
             if (complexity === "easy") {
-                complexityButtons[0].style = "background-image: url('/img/icons/difficult_selected.png');";
-                complexityButtons[1].style = "background-image: url('/img/icons/difficult.png');";
-                complexityButtons[2].style = "background-image: url('/img/icons/difficult.png');";
+                complexityButtons[0].style = "background-image: url('/img/icons/difficult_selected.webp');";
+                complexityButtons[1].style = "background-image: url('/img/icons/difficult.webp');";
+                complexityButtons[2].style = "background-image: url('/img/icons/difficult.webp');";
             }
             if (complexity === "normal") {
-                complexityButtons[0].style = "background-image: url('/img/icons/difficult_selected.png');";
-                complexityButtons[1].style = "background-image: url('/img/icons/difficult_selected.png');";
-                complexityButtons[2].style = "background-image: url('/img/icons/difficult.png');";
+                complexityButtons[0].style = "background-image: url('/img/icons/difficult_selected.webp');";
+                complexityButtons[1].style = "background-image: url('/img/icons/difficult_selected.webp');";
+                complexityButtons[2].style = "background-image: url('/img/icons/difficult.webp');";
             }
             if (complexity === "hard") {
-                complexityButtons[0].style = "background-image: url('/img/icons/difficult_selected.png');";
-                complexityButtons[1].style = "background-image: url('/img/icons/difficult_selected.png');";
-                complexityButtons[2].style = "background-image: url('/img/icons/difficult_selected.png');";
+                complexityButtons[0].style = "background-image: url('/img/icons/difficult_selected.webp');";
+                complexityButtons[1].style = "background-image: url('/img/icons/difficult_selected.webp');";
+                complexityButtons[2].style = "background-image: url('/img/icons/difficult_selected.webp');";
             }
             last_complexity = complexity;
             selected = true;
             refresh_heroes(heroes, lastQuery, complexity);
         }
         else{
-            complexityButtons[0].style = "background-image: url('/img/icons/difficult.png');";
-            complexityButtons[1].style = "background-image: url('/img/icons/difficult.png');";
-            complexityButtons[2].style = "background-image: url('/img/icons/difficult.png');";
+            complexityButtons[0].style = "background-image: url('/img/icons/difficult.webp');";
+            complexityButtons[1].style = "background-image: url('/img/icons/difficult.webp');";
+            complexityButtons[2].style = "background-image: url('/img/icons/difficult.webp');";
             selected = false;
             last_complexity = "easy normal hard";
             refresh_heroes(heroes, lastQuery, last_complexity);

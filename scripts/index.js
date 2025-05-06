@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const root = document.documentElement;
-    const themeSwitchers = document.querySelectorAll("#themeSwitcher");
+    const themeSwitchers = document.querySelectorAll("#themeSwitcher, #theme1Switcher");
 
     const isSystemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const userTheme = localStorage.getItem("theme");
