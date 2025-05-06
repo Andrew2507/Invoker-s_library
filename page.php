@@ -29,10 +29,11 @@ else{
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="scripts/index.css">
-    <link rel="stylesheet" href="scripts/root.css">
+    <link rel="preload" href="./scripts/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="./scripts/root.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title><?= $ishero ? htmlspecialchars($hero['name']) : htmlspecialchars($mechanic['back']) ?></title>
+    <meta name="description" content="Современный справочник по Dota 2">
 </head>
 <body>
 
@@ -47,19 +48,20 @@ else{
         <div class="logo">
             <div class="left"><div class="icon"></div>Dota2</div>
 
-            <label class="switch">
-                <input type="checkbox" id="themeSwitcher">
+            <label for="theme1Switcher" class="switch">
+                <input type="checkbox" id="theme1Switcher">
+                <label for="theme1Switcher" style="display: none;"></label>
                 <span class="slider round"></span>
             </label>
         </div>
 
         <div class="sidebar_items">
             <?php if($ishero): ?>
-                <a class="sidebar_item active">Герои</a>
+                <div class="sidebar_item active">Герои</div>
                 <a href="/mechanics.php" class="sidebar_item">Механики</a>
             <?php else: ?>
                 <a href="/" class="sidebar_item">Герои</a>
-                <a class="sidebar_item active">Механики</a>
+                <div class="sidebar_item active">Механики</div>
             <?php endif; ?>
             <a href="/faq.php" class="sidebar_item">О сайте</a>
         </div>
@@ -68,9 +70,9 @@ else{
     </div>
     <div class="mobile_header">
         <?php if($ishero): ?>
-            <a class="sidebar_item active">Герои</a>
+            <div class="sidebar_item active">Герои</div>
         <?php else: ?>
-            <a class="sidebar_item active">Механики</a>
+            <div class="sidebar_item active">Механики</div>
         <?php endif; ?>
     </div>
 </div>
@@ -90,8 +92,9 @@ else{
         <a href="/faq.php" class="nav-button">О сайте</a>
     </div>
 
-    <label class="switch">
+    <label for="themeSwitcher" class="switch">
         <input type="checkbox" id="themeSwitcher">
+        <label for="themeSwitcher" style="display: none;"></label>
         <span class="slider round"></span>
     </label>
 </div>
@@ -104,13 +107,14 @@ else{
                     <?php if ($ishero): ?>
                     <div class="image" style="background-image: url('<?= htmlspecialchars($hero['image']) ?>')"></div>
                     <div class="description">
-                        <div class="about"><?= htmlspecialchars($hero['name']) ?></div>
+                        <div class="about" id="about"><?= htmlspecialchars($hero['name']) ?></div>
                         <div class="short"><?= htmlspecialchars($hero['short_description']) ?></div>
                     <?php else: ?>
-                        <div class="image" style="background-image: url('<?= htmlspecialchars($mechanic['BG_image']) ?>')"></div>
-                        <div class="description">
+                        <div class="image" style="background-image: url('<?= htmlspecialchars($mechanic['BG_image']) ?>'); aspect-ratio: 1/1; height: 110px"></div>
+                        <div class="description" style='height: 110px'>
                             <div class="about"><?= htmlspecialchars($mechanic['name']) ?></div>
                             <div class="short"><?= htmlspecialchars($mechanic['short_description']) ?></div>
+<!--                            <div class="args"></div>-->
                     <?php endif; ?>
                         <?php if ($ishero): ?>
                             <div class="args">
@@ -118,16 +122,16 @@ else{
                                     <div class="name">Атрибут:</div>
                                     <div class="attribute_icons" style="gap: 7px">
                                         <?php if($hero['Attribute'] == 'strength'): ?>
-                                            <div class="icon" style="background-image: url('/img/icons/item1.png')"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/item1.webp')"></div>
                                         <?php endif; ?>
                                         <?php if($hero['Attribute'] == 'agility'): ?>
-                                            <div class="icon" style="background-image: url('/img/icons/item2.png')"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/item2.webp')"></div>
                                         <?php endif; ?>
                                         <?php if($hero['Attribute'] == 'intelligence'): ?>
-                                            <div class="icon" style="background-image: url('/img/icons/item3.png')"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/item3.webp')"></div>
                                         <?php endif; ?>
                                         <?php if($hero['Attribute'] == 'universal'): ?>
-                                            <div class="icon" style="background-image: url('/img/icons/item4.png')"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/item4.webp')"></div>
                                         <?php endif; ?>
 
                                     </div>
@@ -136,19 +140,19 @@ else{
                                     <div class="name">Сложность:</div>
                                     <div class="complexity_icons">
                                         <?php if($hero['complexity'] == 'easy'): ?>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.png');"></div>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult.png');"></div>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult.png');"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.webp');"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult.webp');"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult.webp');"></div>
                                         <?php endif; ?>
                                         <?php if($hero['complexity'] == 'normal'): ?>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.png')"></div>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.png');"></div>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult.png');"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.webp')"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.webp');"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult.webp');"></div>
                                         <?php endif; ?>
                                         <?php if($hero['complexity'] == 'hard'): ?>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.png')"></div>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.png');"></div>
-                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.png');"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.webp')"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.webp');"></div>
+                                            <div class="icon" style="background-image: url('/img/icons/difficult_selected.webp');"></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -157,9 +161,9 @@ else{
                     </div>
                 </div>
                 <?php if($ishero): ?>
-                    <a href="index.php" class="button"><div class="icon"></div>Heroes</a>
+                    <a href="index.php" class="button"><div class="icon"></div>К выбору героев</a>
                 <?php else: ?>
-                    <a href="mechanics.php" class="button"><div class="icon"></div>Mechanics</a>
+                    <a href="mechanics.php" class="button"><div class="icon"></div>К выбору механик</a>
                 <?php endif; ?>
             </div>
 
@@ -168,7 +172,7 @@ else{
                     <a href="page.php?id=<?= $id ?>&type=hero&section=description" id="router1" class="router-link">Описание</a>
                     <a href="page.php?id=<?= $id ?>&type=hero&section=abilities" id="router2" class="router-link">Способности</a>
                     <a href="page.php?id=<?= $id ?>&type=hero&section=aghanims" id="router3" class="router-link">Аганимы</a>
-                    <a href="page.php?id=<?= $id ?>&type=hero&section=stats" id="router4" class="router-link">Статистика игр</a>
+                    <a href="page.php?id=<?= $id ?>&type=hero&section=facets" id="router4" class="router-link">Аспекты</a>
                 </div>
 
                 <?php
@@ -184,8 +188,8 @@ else{
                     case 'aghanims':
                         include 'sections/aghanims.php';
                         break;
-                    case 'stats':
-                        include 'sections/game_stats.php';
+                    case 'facets':
+                        include 'sections/facets.php';
                         break;
                 }
                 ?>
@@ -207,12 +211,13 @@ else{
     </div>
     <div class="footer">
         <div class="line"></div>
+        <div class="connection"><div class="icon" style="background-image: url('/img/mail_icon.svg');"></div>avvak_d.mail.ru</div>
         <div class="copyright">Copyright © 20<?= date('y') ?> by Andrey. Все права защищены. Скачивание, копирование, изменение не допускается</div>
     </div>
 </div>
 
-<script src="/scripts/index.js"></script>
-<script src="scripts/router-link_hundler.js"></script>
+<script src="/scripts/index.js" defer></script>
+<script src="scripts/router-link_hundler.js" defer></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const buttons = document.querySelectorAll(".router-button");
